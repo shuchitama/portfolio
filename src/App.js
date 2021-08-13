@@ -17,7 +17,7 @@ function App() {
 			<Form
 				inputText={inputText}
 				setInputText={setInputText}
-				todo={todos}
+				todos={todos}
 				setTodos={setTodos}
 			/>
 			<TodoList />
