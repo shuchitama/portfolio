@@ -27,10 +27,31 @@ function App() {
 		}
 	};
 
+	// Save to Local
+	const saveLocalTodos = () => {
+		localStorage.setItem("todos", JSON.stringify(todos));
+	};
+
+	const getLocalTodos = () => {
+		if (localStorage.getItem("todos") === null) {
+			localStorage.setItem("todos", JSON.stringify([]));
+		} else {
+			let localTodo = JSON.parse(
+				localStorage.getItem("todos", JSON.stringify(todos))
+			);
+			setTodos(localTodo);
+		}
+	};
+
 	// UseEffect
 	useEffect(() => {
+		getLocalTodos();
+	}, []);
+
+	useEffect(() => {
 		filterHandler();
-	}, [todos, status]);
+		saveLocalTodos();
+	}, [todos, status]); // error because it wants to move the filterhandler fxn definition inside the useEffect
 
 	return (
 		<div className='App'>
